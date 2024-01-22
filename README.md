@@ -47,13 +47,18 @@ NOTE: In order for your emails to be sent at the time you would like them to be,
 # Instructions
 1. You can start the runtime and leave it sit on a server or computer somewhere and it will automatically send emails daily, MON-FRI at
 the time desired by the user.
+
 2. Format your Excel schedule as the example included.  Colors or number of rows are arbitrary and can be modified by the schedule admin.
+
 3. Once you start the runtime up, you can also open the application, which can be opened and closed at will, and allows the user to
 interact with the database and what information gets sent out to who.
+
 4. Choose your time to send emails, select the path to your schedule, and add some emails to your list.  The ping column for the Email
 list is whether or not you want that email to receive schedule updates (This feature can be used in case someone goes on vacation..).
+
 5. You can also add extra messages to your daily updates by selecting a date on the calendar in the lefthand box, typing your message in
 the Msg box, and clicking send.  You can send multiple messages in a day and they will all be compiled together on that day's message.
 You can also schedule messages for further out if you wish.
+
 6. Once you've done your setup, you can close out of the application and leave the runtime running in the background, and enjoy the
 sweetness of an automated schedule notifier! No more group texts!
