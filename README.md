@@ -30,7 +30,7 @@ via Email updating whoever you need on where your team is and what they are doin
 8. Enjoy the simplicity of Automation, without the need for group texts!
 
 # Tips for running the release
-1. Make sure to keep your schedule up-to-date and correctly formatted!  See the included example/template
+1. Make sure to keep your schedule up-to-date and correctly formatted!  See the included example/template.  You can add as many weeks as you'd like, and you can add as many team member rows as you would like, just keep it within the same format.  You are limited the number of locations across the top, however colors are arbitrary, and as long as the colors match the key, they will display the correct location on your emails.  MAKE SURE YOU UPDATE THE DATES IF YOU TRY TO USE THE EXAMPLE AS AN EMAIL!!
 
 2. ScheduleTrak will send emails based on the current date, so you will always see today's schedule!
 
