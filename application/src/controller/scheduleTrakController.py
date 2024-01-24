@@ -5,8 +5,10 @@ from src.model.databaseConnection import dataBase
 class scheduleTrakController:
     def __init__(self, gui) -> None:
         self.GUI = gui
-        rootDir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-        self.database = dataBase(rootDir + "\\scheduleTrakDB.db")
+        pathToDB = os.getenv("APPDATA") + "\\ScheduleTrak"
+        os.makedirs(pathToDB, exist_ok=True)
+        pathToDB += "\\scheduleTrakDB.db"
+        self.database = dataBase(pathToDB)
 
     def insertNewEmail(self, 
                        email: str):
