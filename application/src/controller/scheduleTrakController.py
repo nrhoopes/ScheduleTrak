@@ -6,7 +6,7 @@ class scheduleTrakController:
     def __init__(self, gui) -> None:
         self.GUI = gui
         rootDir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-        self.database = dataBase(rootDir + "\\runtime\\runtimeDB.db")
+        self.database = dataBase(rootDir + "\\scheduleTrakDB.db")
 
     def insertNewEmail(self, 
                        email: str):

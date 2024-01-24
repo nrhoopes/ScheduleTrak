@@ -9,12 +9,13 @@ class dataBase:
                  dbConnPath: str) -> None:
         self.dbFile = dbConnPath
         self.conn = None
+        print(self.dbFile)
         try:
             self.conn = sqlite3.connect(self.dbFile)
             print("SQLITE VERSION: " + sqlite3.version + " CONNECTED SUCCESSFULLY")
         except Error as e:
             print(e)
-            exit()
+            # exit()
         finally:
             if(self.conn):
                 self.conn.execute(''' CREATE TABLE IF NOT EXISTS schedule (

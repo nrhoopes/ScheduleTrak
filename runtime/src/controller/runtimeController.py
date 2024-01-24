@@ -7,7 +7,7 @@ class schedulerRuntimeController:
     def __init__(self, 
                  reader, 
                  timeToSendUpdate: str = '', 
-                 pathToDB: str = 'runtimeDB.db') -> None:
+                 pathToDB: str = 'scheduleTrakDB.db') -> None:
         self.reader = reader
         self.database = dataBase(pathToDB)
         self.customTime = timeToSendUpdate
