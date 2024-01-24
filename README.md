@@ -1,17 +1,43 @@
-# ScheduleTrak v0.1
-ScheduleTrak is a locally hosted Excel schedule spreadsheet interpreter that allows you to build schedules
-around your team and update people daily on where or what your technicians/sales reps/programmers/team members may be!
-This keeps everyone in the loop of where your team members are located and what job they are working on, and the addition
-of email addresses allows whoever you need to be notified at a time you set daily of the location of your team according
-to a schedule you make! Enjoy the automation of updating your team on their schedules, without the need for annoying group texts!
+# ScheduleTrak v0.2
+ScheduleTrak is a locally hosted (by you) Excel Schedule Spreadsheet interpreter for allowing your team to keep 
+tabs on one another.  The goal of the system is to keep everyone on your team (be it technicians, sales reps, programmers and more)
+in the loop about what everyone should be working on for the day.
+
+Include things like location, job description, and names of your team members, and have a nice daily schedule sent out
+via Email updating whoever you need on where your team is and what they are doing!  No need for annoying group texts!
 
 # Python Version and Operating Systems
 - Developed for Python v3.11.4
 - Tested on Python v3.11.4, Windows 10
 - GUI application developed using CustomTkinter
+- Internet connection required for the runtime to send emails
 
 # Instructions for running release
-1. Coming soon...
+1. Download the latest release
+
+2. Extract all files to a location of your choice
+
+3. Inside you will find two folders, application and runtime, each containing their respective programs
+
+4. You will also find the ```setEmailSender.bat``` tool, which will assist you in setting up the email address to send the updates from. First time setup will require using this.
+
+5. Create your team schedule using the template included.  It is important to follow the structure of the example, otherwise your program may not work or email updates may send incorrectly.
+
+6. Launch the application to add emails to your list, set the time of day to send the work week update, and set the location of your schedule.
+
+7. Launch the runtime on the machine where it will live, and verify it can access the database and the Excel sheet.
+
+8. Enjoy the simplicity of Automation, without the need for group texts!
+
+# Tips for running the release
+1. Make sure to keep your schedule up-to-date and correctly formatted!  See the included example/template
+
+2. ScheduleTrak will send emails based on the current date, so you will always see today's schedule!
+
+3. If you don't want to use the ```setEmailSender.bat``` setup tool, make sure to setup these environment variables:
+    i. py_outlook_user = your email address
+    ii. py_outlook_pass = your email's password
+    iii. py_outlook_sender = the email you would like to send from.  This is typically something like service@yourdomain.com, but could be anything.  If you do not need this, use your email address here.
 
 # Instructions for running (in current build)
 1. Git clone the repository
