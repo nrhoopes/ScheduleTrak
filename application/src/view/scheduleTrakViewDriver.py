@@ -13,6 +13,7 @@ class scheduleTrakViewDriver:
         self.root = ctk.CTk()
         self.root.geometry("1050x500")
         self.root.title("ScheduleTrak")
+        self.root.iconbitmap(self.sourcePath + '\\src\\img\\scheduleTrakLogo.ico')
         rootx = self.root.winfo_width()
         rooty = self.root.winfo_height()
         self.mainFrame = ctk.CTkFrame(self.root, width=rootx, height=rooty)
