@@ -1,10 +1,7 @@
 # ScheduleTrak v0.2
-ScheduleTrak is a locally hosted (by you) Excel Schedule Spreadsheet interpreter for allowing your team to keep 
-tabs on one another.  The goal of the system is to keep everyone on your team (be it technicians, sales reps, programmers and more)
-in the loop about what everyone should be working on for the day.
+ScheduleTrak is a locally hosted (by you) Excel Schedule Spreadsheet interpreter for allowing your team to keep tabs on one another while keeping themselves on track too.  The goal of the system is to keep everyone on your team (be it technicians, sales reps, programmers and more) in the loop about what everyone should be working on for the day.
 
-Include things like location, job description, and names of your team members, and have a nice daily schedule sent out
-via Email updating whoever you need on where your team is and what they are doing!  No need for annoying group texts!
+Include things like location, job description, and names of your team members, and have a nice daily schedule sent out via Email updating whoever you need on where your team is and what they are doing!  No need for annoying group texts!
 
 # Python Version and Operating Systems
 - Developed for Python v3.11.4
@@ -52,9 +49,8 @@ via Email updating whoever you need on where your team is and what they are doin
     * On Windows: ```py application/scheduleTrak.py```
 
 Notes:
-On first run of the runtime, the program will create a database in the directory that
-schedulerRuntime.py is located.  This can be changed in the Runtime's driver file (```schedulerRuntime.py```) but also
-requires updating in the ```__init__``` of ```scheduleTrakController.py```.
+On first run of the runtime, the program will create a database located in the AppData folder.  This can be changed in the Runtime's driver file (```schedulerRuntime.py```) but also
+requires updating in the ```__init__``` of ```scheduleTrakController.py``` (programatically).
 
 On first run of the application, you will need to set the time in which you would like your runtime to
 send your emails out.  You can do this by selecting a time using the scroll box in the top right corner of the
