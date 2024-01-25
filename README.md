@@ -41,11 +41,15 @@ Include things like location, job description, and names of your team members, a
 
 2. Use command ```cd ScheduleTrak```
 
-3. Running the runtime:
-    * On Windows: ```py runtime/schedulerRuntime.py```
-    * For launching the OPCUA server for Ignition alongside the runtime, use the included batch file (currently not fully implemented)
+3. To install the virtual environment, use command ```py -m virtualenv venv``` and then activate it using ```.\venv\Scripts\activate```
 
-4. Running the application:
+4. Install requirements using ```pip install -r requirements.txt```
+
+5. Running the runtime:
+    * On Windows: ```py runtime/schedulerRuntime.py```
+    * For launching the OPCUA server for Ignition alongside the runtime, use the included batch file (currently not fully implemented) or use command ```py runtime/src/model/opcuaPyServer.py``` which you may want to do in a separate terminal.
+
+6. Running the application:
     * On Windows: ```py application/scheduleTrak.py```
 
 Notes:
