@@ -1,5 +1,6 @@
 import openpyxl as xl
 import datetime
+from sys import exit
 
 class ExcelReader:
     
@@ -15,7 +16,12 @@ class ExcelReader:
         self.filepath = filepath
 
     def getTodaysSchedule(self):
-        workbook = xl.load_workbook(self.filepath)
+        try:
+            workbook = xl.load_workbook(self.filepath)
+        except FileNotFoundError:
+            print("\nFATAL: An excel file has not been set in the application, it does not exist, or the file has been removed from the appointed directory.", end='\n\n')
+            input("Press enter to close the runtime")
+            exit()
         sheet = workbook.active
         merged_cells = sheet.merged_cells
         mergedCellsList = []

@@ -1,34 +1,60 @@
-# ScheduleTrak v0.1
-ScheduleTrak is a locally hosted Excel schedule spreadsheet interpreter that allows you to build schedules
-around your team and update people daily on where or what your technicians/sales reps/programmers/team members may be!
-This keeps everyone in the loop of where your team members are located and what job they are working on, and the addition
-of email addresses allows whoever you need to be notified at a time you set daily of the location of your team according
-to a schedule you make! Enjoy the automation of updating your team on their schedules, without the need for annoying group texts!
+# ScheduleTrak v0.2
+ScheduleTrak is a locally hosted (by you) Excel Schedule Spreadsheet interpreter for allowing your team to keep tabs on one another while keeping themselves on track too.  The goal of the system is to keep everyone on your team (be it technicians, sales reps, programmers and more) in the loop about what everyone should be working on for the day.
+
+Include things like location, job description, and names of your team members, and have a nice daily schedule sent out via Email updating whoever you need on where your team is and what they are doing!  No need for annoying group texts!
 
 # Python Version and Operating Systems
 - Developed for Python v3.11.4
 - Tested on Python v3.11.4, Windows 10
 - GUI application developed using CustomTkinter
+- Internet connection required for the runtime to send emails
 
 # Instructions for running release
-1. Coming soon...
+1. Download the latest release
+
+2. Extract all files to a location of your choice
+
+3. Inside you will find two folders, application and runtime, each containing their respective programs
+
+4. You will also find the ```setEmailSender.bat``` tool, which will assist you in setting up the email address to send the updates from. First time setup will require using this.
+
+5. Create your team schedule using the template included.  It is important to follow the structure of the example, otherwise your program may not work or email updates may send incorrectly.
+
+6. Launch the application to add emails to your list, set the time of day to send the work week update, and set the location of your schedule.
+
+7. Launch the runtime on the machine where it will live, and verify it can access the database and the Excel sheet.
+
+8. Enjoy the simplicity of Automation, without the need for group texts!
+
+# Tips for running the release
+1. Make sure to keep your schedule up-to-date and correctly formatted!  See the included example/template.  You can add as many weeks as you'd like, and you can add as many team member rows as you would like, just keep it within the same format.  You are limited the number of locations across the top, however colors are arbitrary, and as long as the colors match the key, they will display the correct location on your emails.  MAKE SURE YOU UPDATE THE DATES IF YOU TRY TO USE THE EXAMPLE AS AN EMAIL!!
+
+2. ScheduleTrak will send emails based on the current date, so you will always see today's schedule!
+
+3. If you don't want to use the ```setEmailSender.bat``` setup tool, make sure to setup these environment variables:
+    i. py_outlook_user = your email address
+    ii. py_outlook_pass = your email's password
+    iii. py_outlook_sender = the email you would like to send from.  This is typically something like service@yourdomain.com, but could be anything.  If you do not need this, use your email address here.
 
 # Instructions for running (in current build)
 1. Git clone the repository
 
 2. Use command ```cd ScheduleTrak```
 
-3. Running the runtime:
-    * On Windows: ```py runtime/schedulerRuntime.py```
-    * For launching the OPCUA server for Ignition alongside the runtime, use the included batch file (currently not fully implemented)
+3. To install the virtual environment, use command ```py -m virtualenv venv``` and then activate it using ```.\venv\Scripts\activate```
 
-4. Running the application:
+4. Install requirements using ```pip install -r requirements.txt```
+
+5. Running the runtime:
+    * On Windows: ```py runtime/schedulerRuntime.py```
+    * For launching the OPCUA server for Ignition alongside the runtime, use the included batch file (currently not fully implemented) or use command ```py runtime/src/model/opcuaPyServer.py``` which you may want to do in a separate terminal.
+
+6. Running the application:
     * On Windows: ```py application/scheduleTrak.py```
 
 Notes:
-On first run of the runtime, the program will create a database in the directory that
-schedulerRuntime.py is located.  This can be changed in the Runtime's driver file (```schedulerRuntime.py```) but also
-requires updating in the ```__init__``` of ```scheduleTrakController.py```.
+On first run of the runtime, the program will create a database located in the AppData folder.  This can be changed in the Runtime's driver file (```schedulerRuntime.py```) but also
+requires updating in the ```__init__``` of ```scheduleTrakController.py``` (programatically).
 
 On first run of the application, you will need to set the time in which you would like your runtime to
 send your emails out.  You can do this by selecting a time using the scroll box in the top right corner of the

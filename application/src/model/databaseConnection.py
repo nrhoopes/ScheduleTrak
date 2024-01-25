@@ -1,5 +1,6 @@
 import sqlite3
 from sqlite3 import Error
+from sys import exit
 
 # Tools only needed by the GUI for talking to the database
 
@@ -8,12 +9,13 @@ class dataBase:
                  dbConnPath: str) -> None:
         self.dbFile = dbConnPath
         self.conn = None
+        print(self.dbFile)
         try:
             self.conn = sqlite3.connect(self.dbFile)
             print("SQLITE VERSION: " + sqlite3.version + " CONNECTED SUCCESSFULLY")
         except Error as e:
             print(e)
-            quit()
+            # exit()
         finally:
             if(self.conn):
                 self.conn.execute(''' CREATE TABLE IF NOT EXISTS schedule (

@@ -8,14 +8,16 @@ ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
 
 class scheduleTrakViewDriver:
-    def __init__(self) -> None:
+    def __init__(self, sourcePath: str) -> None:
+        self.sourcePath = sourcePath
         self.root = ctk.CTk()
         self.root.geometry("1050x500")
         self.root.title("ScheduleTrak")
+        self.root.iconbitmap(self.sourcePath + '\\src\\img\\scheduleTrakLogo.ico')
         rootx = self.root.winfo_width()
         rooty = self.root.winfo_height()
         self.mainFrame = ctk.CTkFrame(self.root, width=rootx, height=rooty)
-        self.Home = scheduleTrakHome(self.mainFrame)
+        self.Home = scheduleTrakHome(self.mainFrame, self.sourcePath)
 
         self.Home.addEmailButton.configure(command=lambda: self.addNewEmail())
         self.Home.selectFilepathButton.configure(command=self.browseFiles)

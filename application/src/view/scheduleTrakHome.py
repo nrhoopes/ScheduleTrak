@@ -7,7 +7,8 @@ from .CustomCTKModules.ctk_timeselect import CTkTimeSelect
 from tkinter import IntVar
 
 class scheduleTrakHome:
-    def __init__(self, mainFrame) -> None:
+    def __init__(self, mainFrame, sourcePath: str) -> None:
+        self.sourcePath = sourcePath
         self.homePageFrame = ctk.CTkFrame(mainFrame)
         self.homePageFrame.grid_columnconfigure((0, 1, 2), weight=1)
         self.homePageFrame.grid_rowconfigure((1), weight=1)
@@ -28,7 +29,7 @@ class scheduleTrakHome:
         self.welcomeLabel = ctk.CTkLabel(self.messageFrame, font=("Rockwell Bold Italic", 66), text="ScheduleTrak")
         self.welcomeLabel.grid(row=0, column=0, pady=10, padx=5)
 
-        self.DTimageCTK = ctk.CTkImage(light_image=Image.open('src/img/denTechLogoDark.png'), dark_image=Image.open('src/img/denTechLogoLight.png'), size=(350, 100))
+        self.DTimageCTK = ctk.CTkImage(light_image=Image.open(self.sourcePath + '\\src\\img\\denTechLogoDark.png'), dark_image=Image.open(self.sourcePath + '\\src\\img\\denTechLogoLight.png'), size=(350, 100))
 
         self.logoLabel = ctk.CTkLabel(self.messageFrame, image=self.DTimageCTK, text="")
         self.logoLabel.grid(row=0, column=1, pady=10, padx=10, sticky='e')
