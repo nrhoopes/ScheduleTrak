@@ -1,14 +1,17 @@
+import time
+import pickle
 from datetime import datetime, date
 from src.model.emailer import Emailer
 from src.model.databaseCreation import dataBase
-import time
 
 class schedulerRuntimeController:
     def __init__(self, 
                  reader, 
                  timeToSendUpdate: str = '', 
-                 pathToDB: str = 'scheduleTrakDB.db') -> None:
+                 pathToDB: str = 'scheduleTrakDB.db',
+                 pathToPickle: str = 'schedules.pickle') -> None:
         self.reader = reader
+        self.pathToPickle = pathToPickle
         self.database = dataBase(pathToDB)
         self.customTime = timeToSendUpdate
 
@@ -19,7 +22,8 @@ class schedulerRuntimeController:
         
         self.findEmails()
 
-        self.DEBUGsend = False
+        # SETTING THIS BIT TO TRUE WILL IMMEDIATELY SEND AN EMAIL ON STARTUP
+        self.DEBUGsend = True
 
 
     def startRuntime(self):
@@ -36,6 +40,7 @@ class schedulerRuntimeController:
                 except Exception as e:
                     print("An error has occurred with reading the file given.  Are you sure it is formatted correctly?: " + e)
                     return None
+                self.__pickleTodaysData(self.pathToPickle)
                 self.Email.sendDailyUpdate(self.__emailList, today, self.reader.getKey(), self.database.getMessages(date.today().strftime("%Y-%m-%d")))
                 self.Email.logout()
                 del self.Email
@@ -65,6 +70,8 @@ class schedulerRuntimeController:
             self.__today = self.reader.getTodaysSchedule()
         except Exception as e:
             print("An error has occurred with reading the file given.  Are you sure it was formatted correctly?: " + e)
+            return None
+
         self.database.clearSchedule()
         for rowNum, i in enumerate(self.__today):
             if rowNum == 0:
@@ -72,3 +79,8 @@ class schedulerRuntimeController:
             else:
                 self.database.insertSchdule(i[0], i[1], i[2])
         return self.__today
+    
+    def __pickleTodaysData(self, path):
+        with open(path, 'wb') as f:
+            pickle.dump(self.readerKey, f, pickle.HIGHEST_PROTOCOL)
+            pickle.dump(self.__today, f, pickle.HIGHEST_PROTOCOL)

@@ -6,6 +6,7 @@ import os
 
 pathToDB = os.getenv("APPDATA") + "\\ScheduleTrak"
 os.makedirs(pathToDB, exist_ok=True)
+pathToPickle = pathToDB + "\\schedules.pickle"
 pathToDB += "\\scheduleTrakDB.db"
 
 user = os.getenv("py_outlook_user")
@@ -19,6 +20,6 @@ if user is None or pas is None or send is None:
 
 reader = ExcelReader()
 
-controller = schedulerRuntimeController(reader, "", pathToDB)
+controller = schedulerRuntimeController(reader, "", pathToDB, pathToPickle)
 
 controller.startRuntime()
