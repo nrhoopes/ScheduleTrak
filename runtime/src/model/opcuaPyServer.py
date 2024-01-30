@@ -1,7 +1,10 @@
 import asyncio
 import logging
+import pickle
+import os
 from datetime import datetime
 from typing import List, Tuple, Any
+from time import sleep
 
 from asyncua import Server, ua
 from asyncua.common.methods import uamethod
@@ -11,6 +14,7 @@ class SchedulerOPCpyServer:
         self.uri = uri
         self.objects = objects
         self.allObjects = {}
+        self.launchServer()
 
     async def main(self):
         _logger = logging.getLogger(__name__)
@@ -70,13 +74,44 @@ class SchedulerOPCpyServer:
         return await obj[variableName].get_value()
 
 
+# sleep(5)
+
+pathToPickle = os.getenv("APPDATA") + "\\ScheduleTrak"
+os.makedirs(pathToPickle, exist_ok=True)
+pathToPickle += "\\schedules.pickle"
+
+colorKey = []
+schedules = []
+
+with open(pathToPickle, 'rb') as f:
+    colorKey = pickle.load(f)
+    schedules = pickle.load(f)
+
+colorKeyForOPCUA = ["colorKey", []]
+names = ["names", []]
+jobs = ["jobs", []]
+locations = ["locations", []]
+
+for i in colorKey:
+    colorKeyForOPCUA[1].append((colorKey[i], i))
+
+for num, i in enumerate(schedules):
+    if num == 0:
+        continue
+    person = 'Person' + str(num)
+    names[1].append((person, str(i[0])))
+    jobs[1].append((person, str(i[1])))
+    locations[1].append((person, str(i[2])))
+
 
 number = 125
 number2 = 42
 string = "123 Test String 123"
-serv = SchedulerOPCpyServer("https://dentechindustrial.com/ScheduleTrak", [["NEWmyObjectNEW", [("NEWmyVarNEW", number), ("AnotherTag", number2), ("PerhapsAString", string)]]])
 
-serv.launchServer()
+serv = SchedulerOPCpyServer("https://dentechindustrial.com/ScheduleTrak", [["NEWmyObjectNEW", [("NEWmyVarNEW", number), ("AnotherTag", number2), ("PerhapsAString", string)]],
+                                                                          colorKeyForOPCUA, jobs, locations, names])
+
+
 
 
 
