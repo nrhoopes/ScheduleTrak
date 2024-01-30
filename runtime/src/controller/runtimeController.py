@@ -31,6 +31,11 @@ class schedulerRuntimeController:
             if currentTime == self.__time or self.DEBUGsend:
                 self.Email = Emailer()
                 today = self.getToday() # Today must be acquired before the key
+                try:
+                    self.readerKey = self.reader.getKey()
+                except Exception as e:
+                    print("An error has occurred with reading the file given.  Are you sure it is formatted correctly?: " + e)
+                    return None
                 self.Email.sendDailyUpdate(self.__emailList, today, self.reader.getKey(), self.database.getMessages(date.today().strftime("%Y-%m-%d")))
                 self.Email.logout()
                 del self.Email
@@ -56,7 +61,10 @@ class schedulerRuntimeController:
             print(e)
 
     def getToday(self):
-        self.__today = self.reader.getTodaysSchedule()
+        try:
+            self.__today = self.reader.getTodaysSchedule()
+        except Exception as e:
+            print("An error has occurred with reading the file given.  Are you sure it was formatted correctly?: " + e)
         self.database.clearSchedule()
         for rowNum, i in enumerate(self.__today):
             if rowNum == 0:
