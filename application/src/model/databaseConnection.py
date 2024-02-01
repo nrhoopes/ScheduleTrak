@@ -94,7 +94,7 @@ class dataBase:
             self.conn.commit()
             return
         else: # Date already contains a message
-            newMessage = messageExists[0][1] + '\n\n' + message
+            newMessage = messageExists[0][1] + '\n' + message
             self.conn.execute(''' UPDATE messages SET message = ? WHERE date = ?; ''', (newMessage, date))
             self.conn.commit()
             return
