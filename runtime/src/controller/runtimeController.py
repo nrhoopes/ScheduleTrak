@@ -32,7 +32,10 @@ class schedulerRuntimeController:
             self.findPath()
             self.findEmails()
             currentTime = datetime.now().strftime("%H:%M")
-            if currentTime == self.__time or self.DEBUGsend:
+
+            dayOfWeek = datetime.date.today().weekday()
+
+            if (currentTime == self.__time and dayOfWeek < 5) or self.DEBUGsend:
                 self.Email = Emailer()
                 today = self.getToday() # Today must be acquired before the key
                 try:
@@ -40,12 +43,13 @@ class schedulerRuntimeController:
                 except Exception as e:
                     print("An error has occurred with reading the file given.  Are you sure it is formatted correctly?: " + e)
                     return None
+                self.todaysMessage = self.database.getMessages(date.today().strftime("%Y-%m-%d")) # Expect String
                 self.__pickleTodaysData(self.pathToPickle)
-                self.Email.sendDailyUpdate(self.__emailList, today, self.reader.getKey(), self.database.getMessages(date.today().strftime("%Y-%m-%d")))
+                self.Email.sendDailyUpdate(self.__emailList, today, self.reader.getKey(), self.todaysMessage)
                 self.Email.logout()
                 del self.Email
                 self.DEBUGsend = False
-            print('Sleeping... ')
+            print('Sleeping... @ ' + currentTime)
             time.sleep(60) 
 
     def findTime(self):
@@ -84,3 +88,4 @@ class schedulerRuntimeController:
         with open(path, 'wb') as f:
             pickle.dump(self.readerKey, f, pickle.HIGHEST_PROTOCOL)
             pickle.dump(self.__today, f, pickle.HIGHEST_PROTOCOL)
+            pickle.dump(self.todaysMessage, f, pickle.HIGHEST_PROTOCOL)
