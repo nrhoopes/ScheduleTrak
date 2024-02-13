@@ -33,7 +33,7 @@ class schedulerRuntimeController:
             self.findEmails()
             currentTime = datetime.now().strftime("%H:%M")
 
-            dayOfWeek = datetime.date.today().weekday()
+            dayOfWeek = date.today().weekday()
 
             if (currentTime == self.__time and dayOfWeek < 5) or self.DEBUGsend:
                 self.Email = Emailer()
